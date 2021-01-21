@@ -34,4 +34,4 @@
 ## 下载链接
 
 * 手机进GitHub不好下载脚本的，可以到下方链接下载
-* https://cdn.jsdelivr.net/gh/hyue418/taobao-11-11/
+* https://cdn.jsdelivr.net/gh/MicahEng/nianhuojie/
