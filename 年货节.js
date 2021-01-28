@@ -121,6 +121,13 @@ function runJd(taskList) {
                         clickContent("取消");
                         randomSleep(1000);
                         break;
+                    } else if (className("android.view.View").textContains("拉好友").exists()) {
+                        log("跳过拉人任务任务");
+                        j++;
+                        i++;
+                        back();
+                        randomSleep(1000);
+                        break;
                     } else {
                         randomSleep(1000);
                         //若未点击成功，则再点击五次，仍未成功则跳过
@@ -134,7 +141,8 @@ function runJd(taskList) {
                             break;
                         }
                     }
-                    randomSleep(2000);
+
+                    randomSleep(1000);
                     if (textContains("加购").exists()) {
                         jdBrowsingOrShopping("加购");
                         back();
@@ -150,8 +158,13 @@ function runJd(taskList) {
                         back();
                         randomSleep(500);
                         break;
+                    } else if (textContains("逛店").exists()) {
+                        jdBrowsingOrShopping("逛店");
+                        back();
+                        randomSleep(500);
+                        break;
                     }
-                    if (textContains("宠汪汪").exists() || textContains("京喜财富岛").exists() || textContains("天天加速").exists()) {
+                    if (textContains("宠汪汪").exists() || textContains("京喜财富岛").exists() || textContains("天天加速").exists() || textContains("拉人").exists()) {
                         randomSleep(10000);
                     } else {
                         randomSleep(2500);
@@ -300,6 +313,25 @@ function jdBrowsingOrShopping(taskName) {
             randomSleep(2500);
         } else if (taskName == "入会") {
             randomSleep(2500);
+            back();
+            randomSleep(1500);
+        } else if (taskName == "逛店") {
+            jdClickButton(goods);
+            randomSleep(1000);
+            //若未点击成功，则再次点击
+            while (textContains("逛店").exists()) {
+                jdClickButton(goods);
+                randomSleep(300);
+            }
+            randomSleep(3000);
+            //商品页可能会有缺货弹窗，点掉
+            if (textContains("取消").exists()) {
+                clickContent("取消");
+                randomSleep(500);
+            }
+            log(swipeTips);
+            randomSwipe();
+            randomSleep(1000);
             back();
             randomSleep(1500);
         }
